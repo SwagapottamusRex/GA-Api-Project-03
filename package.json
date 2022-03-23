@@ -1,0 +1,22 @@
+{
+  "name": "api",
+  "version": "1.0.0",
+  "description": "backend",
+  "main": "server.js",
+  "scripts": {
+    "test": "echo \"Error: no test specified\" && exit 1"
+  },
+  "repository": {
+    "type": "git",
+    "url": "git+https://github.com/SwagapottamusRex/GA-Api-Project-03.git"
+  },
+  "author": "",
+  "license": "ISC",
+  "bugs": {
+    "url": "https://github.com/SwagapottamusRex/GA-Api-Project-03/issues"
+  },
+  "homepage": "https://github.com/SwagapottamusRex/GA-Api-Project-03#readme",
+  "dependencies": {
+    "express": "^4.17.3"
+  }
+}

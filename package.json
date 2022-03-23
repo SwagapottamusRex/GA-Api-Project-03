@@ -16,7 +16,12 @@
     "url": "https://github.com/SwagapottamusRex/GA-Api-Project-03/issues"
   },
   "homepage": "https://github.com/SwagapottamusRex/GA-Api-Project-03#readme",
+  "type": "module",
+  "sourceType": "module",
   "dependencies": {
-    "express": "^4.17.3"
+    "dotenv": "^16.0.0",
+    "express": "^4.17.3",
+    "mongoose": "^6.2.8",
+    "nodemon": "^2.0.15"
   }
 }

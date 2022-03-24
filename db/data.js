@@ -6,6 +6,7 @@ const createPodcast = (
   duration,
   host,
   guests,
+  genre,
   comments
 ) => {
   return {
@@ -16,6 +17,7 @@ const createPodcast = (
     duration: duration,
     host: host,
     guests: guests,
+    genre: genre,
     comments: comments,
   };
 };
@@ -39,7 +41,7 @@ const podcasts = [
     'https://upload.wikimedia.org/wikipedia/en/thumb/3/3e/Off_Menu_Podcast_Cover_Art.jpg/220px-Off_Menu_Podcast_Cover_Art.jpg',
     61,
     'Ed Gamble & James Acaster',
-    'Phil Wang'
+    'Phil Wang',
     'Comedy, Food and Drink'
   ),
 

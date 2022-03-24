@@ -31,13 +31,13 @@ const deletePodcast = async (req, res, next) => {
   try {
     const podcast = await Podcast.findByIdAndDelete(req.params.id);
 
-    if (!podcast.createdBy.equals(req.currentUser._id)) {
-      return res
-        .status(401)
-        .send({
-          message: 'Unathorized action, you are not the owner of the podcast',
-        });
-    }
+    // if (!podcast.createdBy.equals(req.currentUser._id)) {
+    //   return res
+    //     .status(401)
+    //     .send({
+    //       message: 'Unathorized action, you are not the owner of the podcast',
+    //     });
+    // }
 
     return res
       .status(200)
@@ -50,13 +50,13 @@ const deletePodcast = async (req, res, next) => {
 const updatePodcast = async (req, res) => {
   try {
     const podcast = await Podcast.findById(req.params.id);
-    if (!podcast.createdBy.equals(req.currentUser._id)) {
-      return res
-        .status(401)
-        .send({
-          message: 'Unathorized action, you are not the owner of the podcast',
-        });
-    }
+    // if (!podcast.createdBy.equals(req.currentUser._id)) {
+    //   return res
+    //     .status(401)
+    //     .send({
+    //       message: 'Unathorized action, you are not the owner of the podcast',
+    //     });
+    // }
 
     podcast.set(req.body);
     const savedPodcast = await podcast.save();

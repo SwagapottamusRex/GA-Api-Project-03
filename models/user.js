@@ -3,7 +3,7 @@ import mongoose from 'mongoose';
 import bcrypt from 'bcrypt';
 import uniqueValidator from 'mongoose-unique-validator';
 import mongooseHidden from 'mongoose-hidden';
-import { emailRegex } from '../lib/stringTesters';
+import { emailRegex } from '../lib/stringTesters.js';
 
 const userSchema = new mongoose.Schema({
   username: { type: String, required: true, unique: true },

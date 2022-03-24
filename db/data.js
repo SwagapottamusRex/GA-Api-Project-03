@@ -28,7 +28,8 @@ const podcasts = [
     'https://upload.wikimedia.org/wikipedia/en/thumb/1/1f/Adam_Buxton_Podcast_logo.jpg/220px-Adam_Buxton_Podcast_logo.jpg',
     87,
     'Adam Buxton',
-    'LouisTheroux'
+    'LouisTheroux',
+    'Talk'
   ),
 
   createPodcast(
@@ -39,6 +40,7 @@ const podcasts = [
     61,
     'Ed Gamble & James Acaster',
     'Phil Wang'
+    'Comedy, Food and Drink'
   ),
 
   createPodcast(
@@ -48,7 +50,8 @@ const podcasts = [
     'https://is2-ssl.mzstatic.com/image/thumb/Podcasts116/v4/c7/9b/b1/c79bb19c-87f4-fb63-9546-6dcfb04b2231/mza_2942916452169403222.jpg/1200x1200bb.jpg',
     53,
     'Greg James, Felix White and James Anderson',
-    'Matchin Tendulkar'
+    'Matchin Tendulkar',
+    'Sports, Comedy, Talk, Cricket'
   ),
 
   createPodcast(
@@ -58,7 +61,8 @@ const podcasts = [
     'https://en.wikipedia.org/wiki/File:NPR_Code_Switch_cover_art.png',
     44,
     'Shereen Marisol Meraji & Tasneem Raj',
-    'Tiny Tom Cruise'
+    'Tiny Tom Cruise',
+    'Politics, Current Affairs, Talk'
   ),
 ];
 export default podcasts;

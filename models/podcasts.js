@@ -15,9 +15,10 @@ const podcastSchema = new mongoose.Schema({
   year: { type: Number, required: true },
   img: { type: String, required: true },
   duration: { type: Number, required: true },
-  host: {type: String },
+  host: { type: String },
   guests: { type: String },
-  genre: { type : String },
+  genre: { type: String },
+  createdBy: { type: mongoose.Schema.ObjectId, ref: 'User', required: true },
   comments: [commentSchema],
 });
 

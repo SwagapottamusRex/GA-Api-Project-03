@@ -11,14 +11,14 @@ const commentSchema = new mongoose.Schema(
 
 const podcastSchema = new mongoose.Schema({
   title: { type: String, required: true },
-  description: { type: String, required: true, maxLength: 100 },
+  description: { type: String, required: true, maxLength: 1000 },
   year: { type: Number, required: true },
   img: { type: String, required: true },
   duration: { type: Number, required: true },
   host: { type: String },
   guests: { type: String },
   genre: { type: String },
-  createdBy: { type: mongoose.Schema.ObjectId, ref: 'User', required: true },
+  createdBy: { type: mongoose.Schema.ObjectId, ref: 'User' },
   comments: [commentSchema],
 });
 

@@ -6,6 +6,7 @@ const createPodcast = (
   duration,
   host,
   guests,
+  genre,
   comments
 ) => {
   return {
@@ -16,6 +17,7 @@ const createPodcast = (
     duration: duration,
     host: host,
     guests: guests,
+    genre: genre,
     comments: comments,
   };
 };

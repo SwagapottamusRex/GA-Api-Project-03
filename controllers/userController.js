@@ -1,4 +1,7 @@
+import jwt from 'jsonwebtoken';
+
 import User from '../models/user.js';
+import { secret } from '../config/environment.js';
 
 async function registerUser(req, res, next) {
   try {
@@ -24,7 +27,13 @@ async function loginUser(req, res, next) {
     if (!isValidPw) {
       return res.status(404).json({ message: 'Unauthorised, passwords do not match' });
     }
-    return res.status(202).send({ message: 'Login successful' });
+
+    const token = jwt.sign(
+      { userId: user._id, isAdmin: user.isAdmin },
+      secret,
+      { expiresIn: '12h' }
+    );
+    return res.status(202).send({ token, message: 'Login successful' });
   } catch (err) {
     next(err);
   }

@@ -7,27 +7,27 @@ const secureRoute = async (req, res, next) => {
     const authToken = req.headers.authorization;
 
     if (!authToken || !authToken.startsWith('Bearer')) {
-      return res.status(401).send({ message: 'Unauthorized' });
+      return res.status(401).send({ message: 'Unauthorized1' });
     }
 
-    const token = authToken.replace('Bearer', '');
+    const token = authToken.replace('Bearer ', '');
 
     jwt.verify(token, secret, async (err, data) => {
       if (err) {
-        return res.status(401).send({ message: 'Unauthorized' });
+        return res.status(401).send({ message: 'Unauthorized2' });
       }
 
       const user = await User.findById(data.userId);
 
       if (!user) {
-        return res.status(401).send({ message: 'Unauthorized' });
+        return res.status(401).send({ message: 'Unauthorized3' });
       }
 
       req.currentUser = user;
       next();
     });
   } catch (error) {
-    return res.status(401).send({ message: 'Unauthorized' });
+    return res.status(401).send({ message: 'Unauthorized4' });
   }
 };
 

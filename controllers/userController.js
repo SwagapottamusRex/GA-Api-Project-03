@@ -3,17 +3,18 @@ import jwt from 'jsonwebtoken';
 import User from '../models/user.js';
 import { secret } from '../config/environment.js';
 
-async function registerUser(req, res, next) {
+const registerUser = async (req, res, next) => {
   try {
-    if (req.body.password !== req.body.passwordConfirmation) {
-      return res.status(422).json({ message: 'passwords do not match' });
+    if (req.body.password === req.body.confirmPassword) {
+      const user = await User.create(req.body);
+      return res.status(201).json(user);
+    } else {
+      return res.status(400).json({ message: 'password does not match' });
     }
-    const user = await User.create(req.body);
-    return res.status(201).json(user);
   } catch (err) {
     next(err);
   }
-}
+};
 
 async function loginUser(req, res, next) {
   try {

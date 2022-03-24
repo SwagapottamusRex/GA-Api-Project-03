@@ -1,7 +1,7 @@
 import { connectToDb, disconnectDb } from './helpers.js';
 
 import data from './data.js';
-import Podcast from '../models/podcast.js';
+import Podcast from '../models/podcasts.js';
 import User from '../models/user.js';
 
 const adminUser = {

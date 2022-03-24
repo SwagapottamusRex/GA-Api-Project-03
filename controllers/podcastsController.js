@@ -21,6 +21,12 @@ const getPodcastById = async (req, res) => {
 const createPodcast = async (req, res) => {
   try {
     const podcast = await Podcast.create(req.body);
+    const userId = {
+      ...req.body,
+      createdBy: req.currentUser._id
+    }
+    podcast.push(userId)
+
     return res.status(201).json(podcast);
   } catch (err) {
     console.log(err);
@@ -29,15 +35,21 @@ const createPodcast = async (req, res) => {
 
 const deletePodcast = async (req, res, next) => {
   try {
+    const id = req.params;
     const podcast = await Podcast.findByIdAndDelete(req.params.id);
 
-    // if (!podcast.createdBy.equals(req.currentUser._id)) {
-    //   return res
-    //     .status(401)
-    //     .send({
-    //       message: 'Unathorized action, you are not the owner of the podcast',
-    //     });
-    // }
+    if (!podcast) {
+      return res.status(404).send({ message: 'Podcast not found' });
+    }
+
+
+    if (!podcast.createdBy.equals(req.currentUser._id)) {
+      return res
+        .status(401)
+        .send({
+          message: 'Unathorized action, you are not the owner of the podcast',
+        });
+    }
 
     return res
       .status(200)
@@ -49,14 +61,20 @@ const deletePodcast = async (req, res, next) => {
 
 const updatePodcast = async (req, res) => {
   try {
-    const podcast = await Podcast.findById(req.params.id);
-    // if (!podcast.createdBy.equals(req.currentUser._id)) {
-    //   return res
-    //     .status(401)
-    //     .send({
-    //       message: 'Unathorized action, you are not the owner of the podcast',
-    //     });
-    // }
+    const {id}  = req.params
+    const podcast = await Podcast.findById(id);
+    if (!podcast) {
+      return res.status(404).send({ message: 'Podcast not found' });
+    }
+  
+
+    if (!podcast.createdBy.equals(req.currentUser._id)) {
+      return res
+        .status(401)
+        .send({
+          message: 'Unathorized action, you are not the owner of the podcast',
+        });
+    }
 
     podcast.set(req.body);
     const savedPodcast = await podcast.save();

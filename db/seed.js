@@ -28,15 +28,26 @@ async function seed() {
   await Podcast.deleteMany({});
   await User.deleteMany({});
 
+
+
   // Creating admin user
   console.log('Creating users..');
   const [admin, user] = await User.create([adminUser, normalUser]);
   console.log(`Created admin user: ${admin._id}`);
   console.log(`Created normal user: ${user._id}`);
 
+
+
   // Seeding
   console.log('About to seed 🌱..');
-  const podcasts = await Podcast.create(data);
+  
+  const podcastWithOwner = data.map((podcastsItem) => ( {
+    ...podcastsItem, 
+    createdBy: admin._id
+  }))
+    
+  const podcasts = await Podcast.create(podcastWithOwner);
+  
   console.log(`Seeded ${podcasts.length} podcasts 🎧`);
 
   // - Disconnecting.

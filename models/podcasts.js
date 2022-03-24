@@ -18,7 +18,7 @@ const podcastSchema = new mongoose.Schema({
   host: { type: String },
   guests: { type: String },
   genre: { type: String },
-  createdBy: { type: mongoose.Schema.ObjectId, ref: 'User' },
+  createdBy: { type: mongoose.Schema.ObjectId, ref: 'User', required: true},
   comments: [commentSchema],
 });
 

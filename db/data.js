@@ -7,6 +7,7 @@ const createPodcast = (
   host,
   guests,
   genre,
+  createdBy,
   comments
 ) => {
   return {
@@ -18,6 +19,7 @@ const createPodcast = (
     host: host,
     guests: guests,
     genre: genre,
+    createdBy: createdBy,
     comments: comments,
   };
 };
@@ -32,6 +34,8 @@ const podcasts = [
     'Adam Buxton',
     'LouisTheroux',
     'Talk'
+    
+
   ),
 
   createPodcast(

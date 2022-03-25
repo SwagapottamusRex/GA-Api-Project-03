@@ -20,12 +20,12 @@ const getPodcastById = async (req, res) => {
 
 const createPodcast = async (req, res) => {
   try {
-    const podcast = await Podcast.create(req.body);
     const userId = {
       ...req.body,
       createdBy: req.currentUser._id
     }
-    podcast.push(userId)
+    const podcast = await Podcast.create(userId);
+
 
     return res.status(201).json(podcast);
   } catch (err) {

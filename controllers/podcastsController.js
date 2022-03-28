@@ -85,27 +85,24 @@ const updatePodcast = async (req, res) => {
 };
 
 
-async function getPodcastByTitle(req, res, next) {
-  console.log('QUERY BATMAN', req.query)
-  // try {
-  //   const { q } = req.query;
-  //   console.log('HEY ROBIN, Q IS: ', q);
-  //   const regex = new RegExp(q, 'i');
 
-  //   const query = await Podcast.find();
-  //   query.where({
-  //     $or: [{ title: regex }, { description: regex }],
-  //   });
-
-  //   const movies = query;
-
-  //   console.log('HEY ROBIN, MOVIES IS: ', movies);
-  //   return res.status(200).json(movies);
-  // } catch (err) {
-  //   next(err);
-  // }
+const getPodcastByTitle = async (req, res, next) => {
+  try {
+    const matches = await Podcast.find({
+      title: new RegExp(req.query.title, 'i'),
+      description: new RegExp(req.query.description, 'i'),
+      year: req.query.year,
+      host: new RegExp(req.query.host, 'i'),
+      guests: new RegExp(req.query.guests, 'i'),
+      genre: new RegExp(req.query.genre, 'i'),
+    });
+    
+    return res.status(200).json(matches);
+    
+  } catch(err){
+    next(err)
+  }
 }
-
 
 
 export default {

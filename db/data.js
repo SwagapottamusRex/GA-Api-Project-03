@@ -8,7 +8,7 @@ const createPodcast = (
   guests,
   genre,
   createdBy,
-  comments
+  comments,
 ) => {
   return {
     title: title,

@@ -11,13 +11,14 @@ const userSchema = new mongoose.Schema({
     type: String,
     required: true,
     unique: true,
-    validate: (email) => emailRegex.test(email)
+    validate: (email) => emailRegex.test(email),
   },
   password: {
     type: String,
     required: true,
   },
-  isAdmin: { type: Boolean }
+  isAdmin: { type: Boolean },
+  likedPodcasts: [{ type: mongoose.Schema.ObjectId, ref: 'Liked' }],
 });
 
 userSchema.pre('save', function encryptPassword(next) {

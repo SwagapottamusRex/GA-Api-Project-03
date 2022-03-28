@@ -20,6 +20,7 @@ const podcastSchema = new mongoose.Schema({
   genre: { type: String },
   createdBy: { type: mongoose.Schema.ObjectId, ref: 'User', required: true},
   comments: [commentSchema],
+  
 });
 
 export default mongoose.model('Podcast', podcastSchema);

@@ -84,10 +84,35 @@ const updatePodcast = async (req, res) => {
   }
 };
 
+
+async function getPodcastByTitle(req, res, next) {
+  console.log('QUERY BATMAN', req.query)
+  // try {
+  //   const { q } = req.query;
+  //   console.log('HEY ROBIN, Q IS: ', q);
+  //   const regex = new RegExp(q, 'i');
+
+  //   const query = await Podcast.find();
+  //   query.where({
+  //     $or: [{ title: regex }, { description: regex }],
+  //   });
+
+  //   const movies = query;
+
+  //   console.log('HEY ROBIN, MOVIES IS: ', movies);
+  //   return res.status(200).json(movies);
+  // } catch (err) {
+  //   next(err);
+  // }
+}
+
+
+
 export default {
   getAllPodcasts,
   getPodcastById,
   createPodcast,
   deletePodcast,
   updatePodcast,
+  getPodcastByTitle,
 };

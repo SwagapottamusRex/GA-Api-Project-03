@@ -33,4 +33,9 @@ router.route('/register').post(userController.registerUser);
 
 router.route('/login').post(userController.loginUser);
 
+
+router
+  .route('/podcasts/search')
+  .get(podcastsController.getPodcastByTitle)
+
 export default router;

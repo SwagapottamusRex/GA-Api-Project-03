@@ -3,7 +3,6 @@ import jwt from 'jsonwebtoken';
 import User from '../models/user.js';
 import { secret } from '../config/environment.js';
 
-
 const registerUser = async (req, res, next) => {
   try {
     if (req.body.password === req.body.confirmPassword) {
@@ -27,7 +26,9 @@ async function loginUser(req, res, next) {
     const isValidPw = user.validatePassword(req.body.password);
 
     if (!isValidPw) {
-      return res.status(404).json({ message: 'Unauthorised, passwords do not match' });
+      return res
+        .status(404)
+        .json({ message: 'Unauthorised, passwords do not match' });
     }
 
     const token = jwt.sign(
@@ -41,9 +42,6 @@ async function loginUser(req, res, next) {
   }
 }
 
-
-
-
 const getAllUsers = async (req, res) => {
   try {
     const users = await User.find();
@@ -52,7 +50,6 @@ const getAllUsers = async (req, res) => {
     console.log(err);
   }
 };
-
 
 const getUserById = async (req, res) => {
   try {
@@ -63,28 +60,31 @@ const getUserById = async (req, res) => {
   }
 };
 
-
 const updateUser = async (req, res) => {
   try {
-    const { id }  = req.params;
-    
+    const { id } = req.params; // userId
+
     const user = await User.findById(id);
-    // if (!user) {
-    //   return res.status(404).send({ message: 'user not found' });
-    // }
+    if (!user) {
+      return res.status(404).send({ message: 'user not found' });
+    }
 
-    console.log('req.body', req.body)
-    user.set(req.body)
+    const { podcastId } = req?.body;
+    if (user.likedPodcasts.includes(podcastId)) {
+      await user.set({
+        ...user,
+        likedPodcasts: user.likedPodcasts.filter((i) => i != podcastId),
+      });
+    } else {
+      await user.likedPodcasts.push(podcastId);
+    }
+    await user.save();
 
-
-    const newUser = await user.save();
-    return res.status(200).send(newUser);
+    return res.status(200).send(user);
   } catch (err) {
     console.log(err);
   }
 };
-
-
 
 export default {
   registerUser,

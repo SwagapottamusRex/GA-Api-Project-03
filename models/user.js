@@ -1,7 +1,7 @@
 import mongoose from 'mongoose';
 
 import bcrypt from 'bcrypt';
-import uniqueValidator from 'mongoose-unique-validator';
+
 import mongooseHidden from 'mongoose-hidden';
 import { emailRegex } from '../lib/stringTesters.js';
 
@@ -35,6 +35,6 @@ userSchema.plugin(
   mongooseHidden({ defaultHidden: { password: true, email: true } })
 );
 
-userSchema.plugin(uniqueValidator);
+
 
 export default mongoose.model('User', userSchema);

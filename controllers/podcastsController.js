@@ -91,7 +91,7 @@ const getPodcastByTitle = async (req, res, next) => {
     const matches = await Podcast.find({
       title: new RegExp(req.query.title, 'i'),
       description: new RegExp(req.query.description, 'i'),
-      year: req.query.year,
+      // year: new RegExp(req.query.year, 'i'),
       host: new RegExp(req.query.host, 'i'),
       guests: new RegExp(req.query.guests, 'i'),
       genre: new RegExp(req.query.genre, 'i'),

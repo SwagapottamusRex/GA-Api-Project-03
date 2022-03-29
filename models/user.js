@@ -18,7 +18,7 @@ const userSchema = new mongoose.Schema({
     required: true,
   },
   isAdmin: { type: Boolean },
-  likedPodcasts: [{ type: mongoose.Schema.ObjectId, ref: 'Liked' }],
+  likedPodcasts: [{ type: mongoose.Schema.ObjectId }],
 });
 
 userSchema.pre('save', function encryptPassword(next) {

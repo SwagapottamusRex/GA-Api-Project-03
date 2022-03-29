@@ -63,13 +63,16 @@ const getUserById = async (req, res) => {
 const updateUser = async (req, res) => {
   try {
     const { id } = req.params; // userId
-
+    console.log(id);
     const user = await User.findById(id);
     if (!user) {
       return res.status(404).send({ message: 'user not found' });
     }
 
-    const { podcastId } = req?.body;
+    const podcastId = req.body.likedPodcasts;
+    console.log('liked', req.body.likedPodcasts);
+    console.log('podcastid', podcastId);
+
     if (user.likedPodcasts.includes(podcastId)) {
       await user.set({
         ...user,
@@ -78,6 +81,7 @@ const updateUser = async (req, res) => {
     } else {
       await user.likedPodcasts.push(podcastId);
     }
+    console.log(user);
     await user.save();
 
     return res.status(200).send(user);

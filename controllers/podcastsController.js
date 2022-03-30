@@ -23,7 +23,7 @@ const createPodcast = async (req, res) => {
     const userId = {
       ...req.body,
       createdBy: req.currentUser._id
-    }
+    };
     const podcast = await Podcast.create(userId);
 
 
@@ -61,12 +61,12 @@ const deletePodcast = async (req, res, next) => {
 
 const updatePodcast = async (req, res) => {
   try {
-    const {id}  = req.params
+    const { id } = req.params;
     const podcast = await Podcast.findById(id);
     if (!podcast) {
       return res.status(404).send({ message: 'Podcast not found' });
     }
-  
+
 
     if (!podcast.createdBy.equals(req.currentUser._id)) {
       return res
@@ -96,13 +96,13 @@ const getPodcastByTitle = async (req, res, next) => {
       guests: new RegExp(req.query.guests, 'i'),
       genre: new RegExp(req.query.genre, 'i'),
     });
-    
+
     return res.status(200).json(matches);
-    
-  } catch(err){
-    next(err)
+
+  } catch (err) {
+    next(err);
   }
-}
+};
 
 
 export default {
